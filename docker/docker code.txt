@@ -1,0 +1,63 @@
+Microsoft Windows [Version 10.0.19045.2965]
+(c) Microsoft Corporation. All rights reserved.
+
+C:\Users\Admin>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+openjdk      latest    71260f256d19   3 months ago   470MB
+
+C:\Users\Admin>docker pull openjdk
+Using default tag: latest
+latest: Pulling from library/openjdk
+Digest: sha256:9b448de897d211c9e0ec635a485650aed6e28d4eca1efbc34940560a480b3f1f
+Status: Image is up to date for openjdk:latest
+docker.io/library/openjdk:latest
+
+C:\Users\Admin>docker run --name ADD -it -d openjdk
+68f41454904a0ada3eb71a133e3f53f24e3c146cce2c23a175db11e3223878ad
+
+C:\Users\Admin>docker ps
+CONTAINER ID   IMAGE     COMMAND    CREATED         STATUS         PORTS     NAMES
+68f41454904a   openjdk   "jshell"   5 seconds ago   Up 4 seconds             ADD
+51848b638eda   openjdk   "jshell"   2 minutes ago   Up 2 minutes             add
+
+C:\Users\Admin>docker exec -it ADD jshell
+|  Welcome to JShell -- Version 18.0.2.1
+|  For an introduction type: /help intro
+
+jshell> int s=10
+s ==> 10
+
+jshell> int s=10
+s ==> 10
+
+jshell> int r =10
+r ==> 10
+
+jshell> r+s
+$4 ==> 20
+
+jshell> int x= r+s
+x ==> 20
+
+jshell> System.out.println("sum is: "+x);
+sum is: 20
+
+jshell> /exit
+|  Goodbye
+
+C:\Users\Admin>docker ps
+CONTAINER ID   IMAGE     COMMAND    CREATED         STATUS         PORTS     NAMES
+68f41454904a   openjdk   "jshell"   2 minutes ago   Up 2 minutes             ADD
+51848b638eda   openjdk   "jshell"   5 minutes ago   Up 5 minutes             add
+
+C:\Users\Admin>docker stop 51848b638eda
+51848b638eda
+
+C:\Users\Admin>docker container rm 51848b638eda
+51848b638eda
+
+C:\Users\Admin>docker images
+REPOSITORY   TAG       IMAGE ID       CREATED        SIZE
+openjdk      latest    71260f256d19   3 months ago   470MB
+
+C:\Users\Admin>
